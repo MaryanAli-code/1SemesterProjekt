@@ -7,9 +7,9 @@ public class GreenTasks extends Tasks {
         super(type, description, points);
     }
 
-    @Override
-    public int getPoints()
-    {
-        return 0; //temporary
-    }
+//    @Override
+//    public int getPoints()
+//    {
+//        return 0; //temporary
+//    }
 }

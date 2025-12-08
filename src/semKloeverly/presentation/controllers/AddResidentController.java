@@ -47,12 +47,12 @@ public class AddResidentController {
             Resident resident = new Resident(points, name, surName, address, phoneNumber);
             FileDataManager.getInstance().addResident(resident);
 
-//            OutputStream saveFile =
 
         }
         catch (NumberFormatException e) {
             Alert error = new Alert(Alert.AlertType.INFORMATION, "Only numbers are acceptet as points. Try again\n " + e.getMessage());
             error.show();
+
         }
 
     }
