@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import semKloeverly.domain.Resident;
 
 import java.io.IOException;
 
@@ -12,6 +13,7 @@ public class ViewManager {
 
     private static AnchorPane centerPane;
     private static Stage stage;
+    private static Resident editResident;
 
     public static void setStage(Stage primaryStage) {
         stage = primaryStage;
@@ -36,6 +38,5 @@ public class ViewManager {
     public static void setCenterPane(AnchorPane pane) {
         centerPane = pane;
     }
-
 
 }

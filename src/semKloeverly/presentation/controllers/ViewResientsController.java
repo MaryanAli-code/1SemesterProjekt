@@ -6,9 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import semKloeverly.domain.Resident;
 import semKloeverly.persistence.DataManager;
+import semKloeverly.persistence.FileDataManager;
+import semKloeverly.presentation.core.ViewManager;
 
 public class ViewResientsController {
 
@@ -32,10 +37,28 @@ public class ViewResientsController {
 
     private DataManager dataManager;
 
+    @FXML
+    public void initialize()
+  {
+   dataManager = FileDataManager.getInstance();
 
-    public void onEditResident() {
-        
-    }
+    residentName.setCellValueFactory(new PropertyValueFactory<>("fullname"));
+    residentsAddress.setCellValueFactory(
+        new PropertyValueFactory<>("address"));
+    residentsNumber.setCellValueFactory(
+        new PropertyValueFactory<>("phoneNumber"));
+    residentsPoints.setCellValueFactory(new PropertyValueFactory<>("points"));
+
+
+    loadResidents();
+  }
+
+  public void loadResidents()
+  {
+    residentViewTable.getItems().setAll(dataManager.getAllResidents());
+
+  }
+
 
     public void pointInputField() {
     }
@@ -43,5 +66,28 @@ public class ViewResientsController {
     public void onAddPointsButton() {
     }
     public void onRemovePointsButton() {
+    }
+
+  public void onResidentClicked(MouseEvent mouseEvent) {
+      if (mouseEvent.getClickCount() == 2)
+      {
+          Resident selectedResident = residentViewTable.getSelectionModel().getSelectedItem();
+
+          if (selectedResident != null) {
+              residentName.setText(selectedResident.getFullname());
+              residentsAddress.setText(selectedResident.getAddress());
+              residentsNumber.setText(selectedResident.getPhoneNumber());
+              residentsPoints.setText(String.valueOf(selectedResident.getPoints()));
+
+              ViewManager.showView("EditResident");
+
+          }
+      }
+  }
+
+  public void onEditResident() {
+        ViewManager.showView("EditResident");
+
+
     }
 }

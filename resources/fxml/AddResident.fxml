@@ -71,7 +71,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="surNameTextFieldResident" onKeyReleased="#surNameFieldAddResident" prefHeight="32.0" prefWidth="273.0" promptText="Enter Surname">
+                  <TextField fx:id="surNameTextFieldResident" prefHeight="32.0" prefWidth="273.0" promptText="Enter Surname">
                      <HBox.margin>
                         <Insets right="200.0" />
                      </HBox.margin>

@@ -6,10 +6,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import semKloeverly.domain.Resident;
+import semKloeverly.persistence.DataManager;
 import semKloeverly.persistence.FileDataManager;
 import semKloeverly.presentation.core.ViewManager;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class AddResidentController {
+
 
     @FXML
     private TextField startingPoints;
@@ -26,14 +31,11 @@ public class AddResidentController {
     @FXML
     private TextField phoneNumberTextFieldResident;
 
+    private DataManager dataManager;
 
-    public void nameFieldAddResident() {
-    }
-
-    public void addressFieldAddResident() {
-    }
-
-    public void phoneFieldAddResident() {
+    @FXML
+    public void initialize() {
+        dataManager = FileDataManager.getInstance();
     }
 
     public void saveNewResidentButton() {
@@ -45,7 +47,8 @@ public class AddResidentController {
         try {
             int points = Integer.parseInt(startingPoints.getText());
             Resident resident = new Resident(points, name, surName, address, phoneNumber);
-            FileDataManager.getInstance().addResident(resident);
+            dataManager.addResident(resident);
+            ViewManager.showView("AddResident");
 
 
         }
@@ -57,13 +60,18 @@ public class AddResidentController {
 
     }
 
-
-    public void surNameFieldAddResident() {
-    }
-
     public void cancelNewResident() {
         ViewManager.showView("HomeView");
     }
 
+
+    public void nameFieldAddResident() {
+    }
+
+    public void addressFieldAddResident() {
+    }
+
+    public void phoneFieldAddResident() {
+    }
 
 }
